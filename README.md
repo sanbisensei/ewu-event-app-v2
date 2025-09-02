@@ -13,7 +13,7 @@ Zahin Shariar
 
 # submitted to #
 
-Antu Chowdhury (ANTU),
+Antu Chowdhury (ANTU)
 
 Lecturer, Department of CSE
 
