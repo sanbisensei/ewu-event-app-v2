@@ -6,7 +6,7 @@ requireAdmin();
 // Get financial statistics
 $totalRevenue = $pdo->query("SELECT SUM(ticket_earning) FROM Cashflow")->fetchColumn() ?: 0;
 $totalExpenses = $pdo->query("SELECT SUM(food_cost + venue_cost) FROM Cashflow")->fetchColumn() ?: 0;
-$totalSponsorship = $pdo->query("SELECT SUM(sponsor_funding) FROM Cashflow")->fetchColumn() ?: 0;
+$totalSponsorship = $pdo->query("SELECT SUM(sponsor_funding) FROM Sponsors")->fetchColumn() ?: 0;
 $netProfit = $totalRevenue + $totalSponsorship - $totalExpenses;
 
 // Get payment method breakdown
@@ -30,11 +30,17 @@ $recentTransactions = $pdo->query("
 
 // Get all cashflow records
 $allCashflow = $pdo->query("
-    SELECT cf.*, c.customer_name, b.booking_id, e.event_name, e.event_date 
+    SELECT cf.*, c.customer_name, b.booking_id, e.event_name, e.event_date,
+           COALESCE(s.total_sponsor_funding, 0) as actual_sponsor_funding
     FROM Cashflow cf 
     LEFT JOIN Customers c ON cf.customer_id = c.customer_id 
     LEFT JOIN Bookings b ON b.customer_id = cf.customer_id AND b.total_cost = cf.ticket_earning
     LEFT JOIN Events e ON b.event_id = e.event_id 
+    LEFT JOIN (
+        SELECT event_id, SUM(sponsor_funding) as total_sponsor_funding 
+        FROM Sponsors 
+        GROUP BY event_id
+    ) s ON e.event_id = s.event_id
     ORDER BY cf.payment_id DESC
 ")->fetchAll();
 
@@ -161,7 +167,7 @@ $monthlyRevenue = $pdo->query("
           <td><?=htmlspecialchars($cf['event_date'] ?: 'N/A')?></td>
           <td style="color:#10b981;">৳<?=htmlspecialchars($cf['ticket_earning'])?></td>
           <td style="color:#dc2626;">৳<?=number_format($cf['food_cost'] + $cf['venue_cost'], 2)?></td>
-          <td style="color:#3b82f6;">৳<?=htmlspecialchars($cf['sponsor_funding'])?></td>
+          <td style="color:#3b82f6;">৳<?=number_format($cf['actual_sponsor_funding'], 2)?></td>
           <td><?=htmlspecialchars($cf['payment_method'])?></td>
         </tr>
         <?php endforeach; ?>
