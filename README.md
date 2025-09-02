@@ -4,15 +4,21 @@ this is a ==group 5(section7)== CSE302 group project which is **Event Management
 This app allows **admins** to manage events, venues, meals, sponsors, logistics, and cashflow, while **students** can book events, make payments, and manage their profiles.
 
 # submitted by #
-Zahin Shariar
-Sabik Hossen 
+
 Amit Datta
+
+Sabik Hossen
+
+Zahin Shariar
 
 # submitted to #
 
-Antu Chowdhury (ANTU)
+Antu Chowdhury (ANTU),
+
 Lecturer, Department of CSE
+
 East West University
+
 ---
 
 ## 🚀 Features
