@@ -95,11 +95,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <div class="card">
-      <h2>👤 Client Login</h2>
-      <p style="color:#94a3b8;margin-bottom:16px;">For customers booking events</p>
+      <h2>👤 Student Login</h2>
+      <p style="color:#94a3b8;margin-bottom:16px;">For students booking events</p>
       <form method="post">
         <input type="hidden" name="role" value="client">
-        <label>Customer ID</label>
+        <label>Student ID</label>
         <input name="customer_id" required placeholder="e.g. C001">
         <label>Password</label>
         <input type="password" name="customer_pass" required>
