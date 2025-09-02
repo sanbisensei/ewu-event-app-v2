@@ -1,6 +1,6 @@
 # 🎉 EWU Event App
 
-this is a ==group 5(section7)== CSE302 group project which is **Event Management System** built with **PHP, MySQL, HTML, and CSS**.  
+this is a #group 5(section7)# CSE302 group project which is **Event Management System** built with **PHP, MySQL, HTML, and CSS**.  
 This app allows **admins** to manage events, venues, meals, sponsors, logistics, and cashflow, while **students** can book events, make payments, and manage their profiles.
 
 # submitted by #
